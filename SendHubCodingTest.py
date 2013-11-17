@@ -33,6 +33,12 @@ def create_routes():
     input_f = request.files['input']
     
     input_dict = json.loads(input_f.read())
+    phone_list = input_dict['recipients']
+
+    print len(phone_list[0])
+    exit()
+
+    error_checking(phone_list)
     
     no_of_recipients = len(input_dict['recipients'])
 
@@ -43,7 +49,6 @@ def create_routes():
     
     ip_list = count_senders(no_of_recipients)
     no_of_categories = len(ip_list)
-    phone_list = input_dict['recipients']
 
     small_prefix = "10.0.1."
     medium_prefix = "10.0.2."
@@ -92,6 +97,31 @@ def create_routes():
     output_json = json.dumps(output_dict)
 
     return output_json
+
+def error_checking(phone_numbers):
+    unique = test_unique(phone_numbers)
+    ten_digits = test_ten_digits(phone_numbers)
+
+    if unique == False:
+        print "Please provide unique phone numbers!"
+        exit()
+    elif ten_digits == False:
+        print "Please provide 10-digit phone numbers i.e. 1234567890"
+        exit()
+    
+def test_ten_digits(no_list):
+    for i in no_list:
+        if len(i) != 10:
+            return False
+    return True
+
+def test_unique(no_list):
+    s = set()
+    for x in no_list:
+        if x in s: 
+            return False
+        s.add(x)
+    return True
 
 def count_senders(number):
     req = [25, 10, 5, 1]

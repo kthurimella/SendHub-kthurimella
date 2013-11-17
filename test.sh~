@@ -1,0 +1,4 @@
+#!/bin/bash
+clear
+python generate_phone_numbers.py 12 'Hello World'
+curl -i -F input=@input.txt http://sendhub-kthurimella.herokuapp.com

@@ -3,27 +3,9 @@
 from flask import Flask
 from flask import request
 from flask import render_template
-from jsonschema import validate
 import json
 
 app = Flask(__name__)
-
-schema = {
-    "title": "SendHub Challenge Schema",
-    "type": "object",
-    "properties": {
-        "message": {
-            "type": "string"
-            },
-        "recipients": {
-            "type": "array",
-            "minItems": 1,
-            "items": {"type": "string"},
-            "uniqueItems": True
-            }
-        },
-    "required": ["message", "recipients"]
-}
 
 
 @app.route('/', methods=['POST'])
@@ -35,11 +17,11 @@ def create_routes():
     input_dict = json.loads(input_f.read())
     phone_list = input_dict['recipients']
 
-    print len(phone_list[0])
-    exit()
+    if test_ten_digits(phone_list) == False:
+        return "Please provide 10-digit phone numbers i.e. 1234567890\n"
+    elif test_unique(phone_list) == False:
+        return "Please provide unique phone numbers!\n"
 
-    error_checking(phone_list)
-    
     no_of_recipients = len(input_dict['recipients'])
 
     host_small = 1
@@ -98,17 +80,10 @@ def create_routes():
 
     return output_json
 
-def error_checking(phone_numbers):
-    unique = test_unique(phone_numbers)
-    ten_digits = test_ten_digits(phone_numbers)
+@app.errorhandler(404)
+def page_not_found(error):
+    return 'This page does not exist', 404
 
-    if unique == False:
-        print "Please provide unique phone numbers!"
-        exit()
-    elif ten_digits == False:
-        print "Please provide 10-digit phone numbers i.e. 1234567890"
-        exit()
-    
 def test_ten_digits(no_list):
     for i in no_list:
         if len(i) != 10:

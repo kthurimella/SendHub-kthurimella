@@ -20,11 +20,11 @@ def create_routes():
 
     if test_ten_digits(phone_list) == False:
         return "Please provide 10-digit phone numbers i.e. 1234567890\n"
-    elif non_unique_nos != "none"
+    elif non_unique_nos != "none":
         return "Duplicates found: " + str(non_unique_nos) + "\n Provide unique phone numbers!\n"
-    elif len(phone_list) > 10414 
+    elif len(phone_list) > 10414:
         return "Too many phone numbers in one request!\n"
-    elif len(phone_list) < 1
+    elif len(phone_list) < 1:
         return "Too few phone numbers in one request!\n"
 
     no_of_recipients = len(input_dict['recipients'])

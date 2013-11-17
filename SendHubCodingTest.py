@@ -17,9 +17,10 @@ def create_routes():
     input_dict = json.loads(input_f.read())
     phone_list = input_dict['recipients']
     non_unique_nos = test_unique(phone_list)
+    bad_phone_nos = test_ten_digits(phone_list)
 
-    if test_ten_digits(phone_list) == False:
-        return "Please provide 10-digit phone numbers i.e. 1234567890\n"
+    if len(bad_phone_nos) > 0:
+        return "Bad Numbers: " + str(bad_phone_nos) + "\nPlease provide 10-digit phone numbers i.e. 1234567890\n"
     elif len(non_unique_nos) > 0:
         return "Duplicates found: " + str(non_unique_nos) + "\nProvide unique phone numbers!\n"
     elif len(phone_list) > 10414:
@@ -90,10 +91,15 @@ def page_not_found(error):
     return 'This page does not exist', 404
 
 def test_ten_digits(no_list):
+    bad_nos = []
     for i in no_list:
-        if len(i) != 10:
-            return False
-    return True
+	try:
+		phone_no = int(i) 
+		if phone_no < 1000000000 or phone_no > 9999999999:
+			bad_nos.append(i) 
+	except ValueError: 
+		bad_nos.append(i) 
+    return bad_nos
 
 def test_unique(no_list):
     s = set()

@@ -1,4 +1,7 @@
-Flask==0.9
+Flask==0.10.1
 Jinja2==2.6
-Werkzeug==0.8.3
-gunicorn==0.17.2
+Routes==1.12.3
+Werkzeug==0.9.4
+gunicorn==18.0
+jsonschema==2.3.0
+simplejson==2.3.2

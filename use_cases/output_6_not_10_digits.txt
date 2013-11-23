@@ -1,0 +1,11 @@
+HTTP/1.1 100 Continue
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Date: Sun, 17 Nov 2013 23:35:04 GMT
+Server: gunicorn/18.0
+Content-Length: 102
+Connection: keep-alive
+
+Bad Numbers: [u'+13064998123', u'+12280321236']
+Please provide 10-digit phone numbers i.e. 1234567890

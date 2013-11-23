@@ -3,5 +3,4 @@ Jinja2==2.6
 Routes==1.12.3
 Werkzeug==0.9.4
 gunicorn==18.0
-jsonschema==2.3.0
 simplejson==2.3.2

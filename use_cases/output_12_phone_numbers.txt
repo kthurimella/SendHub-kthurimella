@@ -1,0 +1,10 @@
+HTTP/1.1 100 Continue
+
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Date: Sun, 17 Nov 2013 21:59:18 GMT
+Server: gunicorn/18.0
+Content-Length: 301
+Connection: keep-alive
+
+{"message": "hi", "routes": [{"ip": "10.0.3.1", "recipients": ["3762121921", "9371528922", "4160912659", "7541617325", "6711235383", "2469741338", "5686564452", "7144329699", "8612074838", "6380792337"]}, {"ip": "10.0.1.1", "recipients": "9090534501"}, {"ip": "10.0.1.2", "recipients": "7155259984"}]}
